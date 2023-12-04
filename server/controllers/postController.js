@@ -2,10 +2,10 @@ const postModel = require("../models/postModel");
 
 const createPostController = async (req, res) => {
   try {
-    const { category, title, description } = req.body;
+    const { category, title, description, image } = req.body;
 
     // Validation of Post
-    if (!category || !title || !description) {
+    if (!category || !title || !description || !image) {
       return res.status(500).send({
         success: false,
         message: "Missing fields. Provide all information.",
@@ -15,6 +15,7 @@ const createPostController = async (req, res) => {
       category,
       title,
       description,
+      image,
       postedBy: req.auth._id,
     }).save();
     res.status(201).send({

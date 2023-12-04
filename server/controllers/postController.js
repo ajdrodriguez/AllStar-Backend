@@ -2,16 +2,17 @@ const postModel = require("../models/postModel");
 
 const createPostController = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { category, title, description } = req.body;
 
     // Validation of Post
-    if (!title || !description) {
+    if (!category || !title || !description) {
       return res.status(500).send({
         success: false,
         message: "Missing fields. Provide all information.",
       });
     }
     const post = await postModel({
+      category,
       title,
       description,
       postedBy: req.auth._id,
@@ -95,13 +96,13 @@ const deletePostController = async (req, res) => {
 // Update Post
 const updatePostController = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { category, title, description } = req.body;
 
     // Post Find
     const post = await postModel.findById({ _id: req.params.id });
 
     // Validation of Post
-    if (!title || !description) {
+    if (!category || !title || !description) {
       return res.status(500).send({
         success: false,
         message: "Missing fields. Provide all information.",
@@ -112,6 +113,7 @@ const updatePostController = async (req, res) => {
         _id: req.params.id,
       },
       {
+        category: category || post?.category,
         title: title || post?.title,
         description: description || post?.description,
       },

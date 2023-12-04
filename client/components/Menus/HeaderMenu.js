@@ -14,7 +14,7 @@ const HeaderMenu = () => {
     alert("User logged out successfully.");
   };
   return (
-    <View>
+    <View style={styles.container}>
       <TouchableOpacity onPress={handleLogout}>
         <FontAwesome5
           name="sign-out-alt"

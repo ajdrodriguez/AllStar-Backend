@@ -84,10 +84,10 @@ const Post = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#e7d7bc",
     flex: 1,
+    paddingTop: 40,
     justifyContent: "space-between",
-    margin: 10,
-    marginTop: 40,
   },
   heading: {
     fontSize: 25,

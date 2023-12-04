@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     flex: 2,
     alignItems: "center",
     justifyContent: "center",
+    position: "relative",
   },
   image: {
     height: 400,

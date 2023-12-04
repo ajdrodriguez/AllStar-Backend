@@ -24,7 +24,11 @@ const ScreenMenu = () => {
             name="Home"
             component={Home}
             options={{
-              title: "Admin",
+              title: `Hi, ${state?.user.name}!`,
+              headerStyle: {
+                backgroundColor: "black",
+              },
+              headerTitleStyle: { color: "white" },
               headerRight: () => <HeaderMenu />,
             }}
           />
@@ -33,7 +37,12 @@ const ScreenMenu = () => {
             component={Post}
             options={{
               headerBackTitle: "Back",
+              headerStyle: {
+                backgroundColor: "black",
+              },
+              headerTitleStyle: { color: "white" },
               headerRight: () => <HeaderMenu />,
+              headerTintColor: "white",
             }}
           />
           <Stack.Screen
@@ -41,7 +50,12 @@ const ScreenMenu = () => {
             component={MyPosts}
             options={{
               headerBackTitle: "Back",
+              headerStyle: {
+                backgroundColor: "black",
+              },
+              headerTitleStyle: { color: "white" },
               headerRight: () => <HeaderMenu />,
+              headerTintColor: "white",
             }}
           />
           <Stack.Screen
@@ -49,7 +63,12 @@ const ScreenMenu = () => {
             component={Account}
             options={{
               headerBackTitle: "Back",
+              headerStyle: {
+                backgroundColor: "black",
+              },
+              headerTitleStyle: { color: "white" },
               headerRight: () => <HeaderMenu />,
+              headerTintColor: "white",
             }}
           />
         </>

@@ -13,8 +13,11 @@ import PostCard from "../components/PostCard";
 
 const Home = () => {
   //global state
+  const [state] = useContext(AuthContext);
   const [posts, getAllPosts] = useContext(PostContext);
   const [refreshing, setRefreshing] = useState(false);
+  const userRole = state?.user.role;
+
   useEffect(() => {}, [getAllPosts]);
   //refresh controll
   const onRefresh = useCallback(() => {
@@ -31,10 +34,15 @@ const Home = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <PostCard posts={posts} />
+        {userRole === "admin" ? (
+          <PostCard posts={posts} />
+        ) : (
+          <Text>I'm A user</Text>
+        )}
+
         {/* <Text>{JSON.stringify(posts, null, 4)}</Text> */}
       </ScrollView>
-      <View style={{ backgroundColor: "#ffffff" }}>
+      <View style={{ backgroundColor: "black" }}>
         <FooterMenu />
       </View>
     </View>
@@ -43,8 +51,9 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#e7d7bc",
     flex: 1,
-    margin: 10,
+    marginTop: 1,
     justifyContent: "space-between",
   },
 });

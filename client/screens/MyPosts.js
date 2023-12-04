@@ -43,9 +43,10 @@ const MyPosts = () => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "#e7d7bc",
     flex: 1,
+    paddingTop: 20,
     justifyContent: "space-between",
-    margin: 10,
   },
 });
 

@@ -13,33 +13,49 @@ const FooterMenu = () => {
         <FontAwesome5
           name="home"
           style={styles.iconStyle}
-          color={route.name === "Home" && "orange"}
+          color={route.name === "Home" ? "yellowgreen" : "white"}
         />
-        <Text>Home</Text>
+        <Text
+          style={{ color: route.name === "Home" ? "yellowgreen" : "white" }}
+        >
+          Home
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Post")}>
         <FontAwesome5
           name="camera"
           style={styles.iconStyle}
-          color={route.name === "Post" && "orange"}
+          color={route.name === "Post" ? "yellowgreen" : "white"}
         />
-        <Text>Post</Text>
+        <Text
+          style={{ color: route.name === "Post" ? "yellowgreen" : "white" }}
+        >
+          Post
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("My Posts")}>
         <FontAwesome5
           name="list"
           style={styles.iconStyle}
-          color={route.name === "My Posts" && "orange"}
+          color={route.name === "My Posts" ? "yellowgreen" : "white"}
         />
-        <Text>My Posts</Text>
+        <Text
+          style={{ color: route.name === "My Posts" ? "yellowgreen" : "white" }}
+        >
+          My Posts
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Account")}>
         <FontAwesome5
           name="user"
           style={styles.iconStyle}
-          color={route.name === "Account" && "orange"}
+          color={route.name === "Account" ? "yellowgreen" : "white"}
         />
-        <Text>Account</Text>
+        <Text
+          style={{ color: route.name === "Account" ? "yellowgreen" : "white" }}
+        >
+          Account
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -47,9 +63,10 @@ const FooterMenu = () => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "black",
     flexDirection: "row",
-    margin: 10,
     justifyContent: "space-between",
+    padding: 10,
   },
   iconStyle: {
     marginBottom: 3,

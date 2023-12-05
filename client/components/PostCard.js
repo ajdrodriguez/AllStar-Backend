@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert, Image } from "react-native";
 import React, { useState } from "react";
 import axios from "axios";
 import moment from "moment/moment";
@@ -81,6 +81,15 @@ const PostCard = ({ posts, myPostScreen }) => {
               </View>
             )}
             <Text style={styles.title}>{post?.title}</Text>
+            <Image
+              source={{ uri: post?.image }}
+              style={{
+                width: 200,
+                height: 200,
+                alignSelf: "center",
+                marginTop: 5,
+              }}
+            />
             <Text style={styles.desc}>{post?.description}</Text>
             <View style={styles.footer}>
               {post?.postedBy?.name && (
@@ -95,6 +104,11 @@ const PostCard = ({ posts, myPostScreen }) => {
                 <FontAwesome5 name="clock" color={"orange"} />{" "}
                 {moment(post?.createdAt).format("MMM DD, YYYY")}
               </Text>
+              <View
+                style={{ flexDirection: "row", justifyContent: "flex-end" }}
+              >
+                <Text style={{ color: "gray" }}>{post?.category}</Text>
+              </View>
             </View>
           </View>
         </React.Fragment>

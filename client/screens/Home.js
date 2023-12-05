@@ -10,41 +10,27 @@ import { AuthContext } from "../context/authContext";
 import FooterMenu from "../components/Menus/FooterMenu";
 import { PostContext } from "../context/postContext";
 import PostCard from "../components/PostCard";
+import Dashboard from "./admin/Dashboard";
+import MyPosts from "./MyPosts";
 
 const Home = () => {
   //global state
   const [state] = useContext(AuthContext);
-  const [posts, getAllPosts] = useContext(PostContext);
-  const [refreshing, setRefreshing] = useState(false);
+
   const userRole = state?.user.role;
 
-  useEffect(() => {}, [getAllPosts]);
-  //refresh controll
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    getAllPosts;
-    setTimeout(() => {
-      setRefreshing(false);
-    }, 2000);
-  }, []);
   return (
     <View style={styles.container}>
-      <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      >
-        {userRole === "admin" ? (
-          <PostCard posts={posts} />
-        ) : (
-          <Text>I'm A user</Text>
-        )}
+      {userRole === "admin" ? (
+        <>
+          <Dashboard />
+          <FooterMenu />
+        </>
+      ) : (
+        <MyPosts />
+      )}
 
-        {/* <Text>{JSON.stringify(posts, null, 4)}</Text> */}
-      </ScrollView>
-      <View style={{ backgroundColor: "black" }}>
-        <FooterMenu />
-      </View>
+      {/* <Text>{JSON.stringify(posts, null, 4)}</Text> */}
     </View>
   );
 };

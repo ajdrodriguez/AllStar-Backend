@@ -7,12 +7,10 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/authContext";
 import FooterMenu from "../components/Menus/FooterMenu";
-import { AntDesign } from "@expo/vector-icons";
-import * as ImagePicker from "expo-image-picker";
 
 const Account = () => {
   // Global State
@@ -25,30 +23,6 @@ const Account = () => {
   const [password, setPassword] = useState(user?.password);
   const [email] = useState(user?.email);
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState();
-
-  const addImage = async () => {
-    let _image = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
-    console.log(JSON.stringify(_image));
-    if (!_image.canceled) {
-      setImage(_image.assets[0].uri);
-    }
-  };
-
-  useEffect(() => {
-    (async () => {
-      const { status } =
-        await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Sorry, we need camera roll permissions to update your photo.");
-      }
-    })();
-  }, []);
 
   // Update User Data Function
   const handleUpdate = async () => {
@@ -72,15 +46,10 @@ const Account = () => {
   return (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
-        {image && (
-          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
-        )}
-        <View style={styles.uploadBtnContainer}>
-          <TouchableOpacity onPress={addImage} style={styles.uploadBtn}>
-            <Text>{image ? "Edit" : "Upload"} Image</Text>
-            <AntDesign name="camera" size={20} color="black" />
-          </TouchableOpacity>
-        </View>
+        <Image
+          source={require("../assets/Profile.jpg")}
+          style={{ width: 200, height: 200 }}
+        />
       </View>
       <Text style={styles.warningText}>
         Currently, you can only update your name and password.
@@ -122,7 +91,7 @@ const Account = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={{ flex: 1, justifyContent: "flex-end" }}>
+      <View style={{ justifyContent: "flex-end" }}>
         <FooterMenu />
       </View>
     </View>

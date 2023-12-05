@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
 
   // Default Axios Setting
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  axios.defaults.baseURL = "https://as-backend-server.onrender.com/api/v1";
+  axios.defaults.baseURL = "https://irm-deployment.onrender.com/api/v1";
 
   return (
     <AuthContext.Provider value={[state, setState]}>
